@@ -1,0 +1,104 @@
+<div class="row">
+<div class="col-lg-12">
+    <rd-widget>
+      <rd-widget-body>
+        <div class="widget-icon green pull-left" >
+          <i class="fa fa-list-ol"></i>
+        </div>
+        <div class="title">BOOKING LIST</div>
+        <div class="comment">Here you can see the list of bookings done you till now.</div>
+      </rd-widget-body>
+    </rd-widget>
+  </div> 
+
+<div class="row"  ng-controller="BookingListCtrl">
+  <div class="col-lg-12">
+    <rd-widget>
+      <rd-widget-header icon="fa-list-ol" title="BOOKING LIST">
+      </rd-widget-header>
+      <rd-widget-body classes="large no-padding" >
+        <div class="table-responsive" >
+
+          <table ng-table="driverBookingList" template-pagination="custom/pager" class="table table-bordred table-striped userlist">
+                    <thead><th nowrap>Booking No</th><th nowrap>Pub Name</th><th nowrap>Status</th><th nowrap>Message</th><th nowrap>Booking Date</th><th nowrap>Details</th></thead>
+                    <tr ng-repeat="bookings in getBookingList">
+                        <td nowrap>{{bookings.drive_code}} </td>
+                        <td nowrap>{{bookings.pub.pub_name}} </td>
+                        <td nowrap>{{bookings.status}}</td>
+                        <td><label>
+                              <font color="orange">{{ bookings.status == 'Requested' ? 'Your Request is in progress. We will get back to you with the driver detail in some time. Thankyou.':''}} </font>
+                              <font color="blue">{{ bookings.status == 'Assigned' ? 'Driver has been assigned for your request. The driver will arrive within 45 minutes. For more details please click on view detail button.':''}}</font>
+                              <font color="purple">{{ bookings.status == 'Started' ? 'Your trip has been started. Enjoy the journey.':''}} </font>
+                              <font color="red">{{ bookings.status == 'Stoped' ? 'Your trip has been ended. Thank you for availing our service.':''}} </font>
+                              <font color="green">{{ bookings.status == 'Settled' ? 'Thank you for the payment.':''}} </font>
+                            </label>
+                        </td>
+                        <td>{{bookings.booking_date_time}}</td>
+                        <td>
+                            <p> <span >
+                                <label><a href ng-click="getBookingDetails()" class="topic-link">View</a> </label> 
+                            </span>
+                            </p>
+                        </td>
+                        <!-- <td data-title="'Pub Name'" style="text-align: left;">{{bookings.pub.pub_name}} </td>
+                        <td data-title="'Date'">{{bookings.booking_date_time}}</td>
+                        <td data-title="'Status'">{{bookings.status}}</td>
+                        <td data-title="'Message'"><label>
+                              <font color="orange">{{ bookings.status == 'Requested' ? 'mesage 1'}} </font>
+                              <font color="red">{{ bookings.status == 'Assigned' ? 'mesage 2'}}</font>
+                              <font color="green">{{ bookings.status == 'Started' ? 'mesage 3'}} </font>
+                              <font color="green">{{ bookings.status == 'Stoped' ? 'mesage 4'}} </font>
+                              <font color="green">{{ bookings.status == 'Settled' ? 'mesage 5'}} </font>
+                            </label>
+                        </td>
+                        <td data-title="'View Details'">
+                            <p> <span >
+                                <label>| <a href ng-click="getBookingDetails()" class="topic-link">View</a> |</label> 
+                            </span>
+                            </p>
+                        </td> -->
+                      </tr>
+                </table>
+
+
+
+
+          <!-- <table class="table">
+          <thead>
+            <tr>
+                <th>Test 1</th><th>Test 2</th><th>Test 3</th>
+            </tr>
+          </thead>
+            <tbody>
+              
+              <tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+              
+            </tbody>
+          </table> -->
+        </div>      
+
+      </rd-widget-body>
+      <uib-pagination ng-show="getBookingList.length > 0" total-items="paginationTotal"
+                                ng-model="currentUserPage"
+                                max-size="maxSize"
+                                class="pagination-custom pagination-sm pull-right"
+                                boundary-links="true"
+                                rotate="false"
+                                num-pages="numPages"
+                                ng-change="pageChanged()">
+                </uib-pagination>
+     <!--  <rd-widget-footer>
+        <ul class="pagination pagination-sm pull-right">
+          <li><a href="#">&laquo;</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">&raquo;</a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </rd-widget-footer> -->
+    </rd-widget>
+  </div>
+</div>

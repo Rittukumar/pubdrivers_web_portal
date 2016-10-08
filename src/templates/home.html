@@ -1,0 +1,195 @@
+<!-- <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <uib-alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  </div>
+</div> -->
+
+<!-- rectangular boxes starts here -->
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon green pull-left" >
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="title">Safe</div>
+				<div class="comment">safety is our priority</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon red pull-left">
+					<i class="fa fa-tasks"></i>
+				</div>
+				<div class="title">Certified</div>
+				<div class="comment">have certified drivers</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon orange pull-left">
+					<i class="fa fa-thumbs-o-up"></i>
+				</div>
+				<div class="title">Careful</div>
+				<div class="comment">we follow traffic rules</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon blue pull-left">
+					<i class="fa fa-glass"></i>
+				</div>
+				<div class="title">Enjoy</div>
+				<div class="comment">enjoy madi driver ready</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+<!-- rectangular boxes end here -->
+
+<!-- body starts here -->
+<div class="row"  ng-controller="HomeCtrl">
+	
+	<div class="col-lg-8">
+	<div class="row alerts-container" data-ng-show="alerts1.length">
+    	<div class="col-xs-12">
+      		<uib-alert data-ng-repeat="alert in alerts1" type="{{alert.type}}" close="closeAlert1($index)">{{alert.msg}}</uib-alert>
+    	</div>
+  	</div> 
+		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="PubDrivers">
+   				<button class="btn btn-sm btn-info" ng-click="bookdriver()">Book a Driver</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+				<div class="message">
+					This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+	<div class="col-lg-4" data-ng-show="userName != null">
+		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="Upcoming Events">
+   			</rd-widget-header>
+   			<rd-widget-body>
+				<div class="message">
+					This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+	<div class="col-lg-4" data-ng-show="userName == null">
+		<rd-widget>
+   			<rd-widget-header icon="fa-sign-in" title="SIGN IN">
+   			</rd-widget-header>
+   			<rd-widget-body>
+   				<div class="message">
+		 			<div class="row alerts-container" data-ng-show="alerts2.length">
+		                <div class="col-xs-12">
+		                  <uib-alert data-ng-repeat="alert in alerts2" type="{{alert.type}}" close="closeAlert2($index)">{{alert.msg}}</uib-alert>
+		                </div>
+		              </div> 
+		             <form> 
+			            <div class="form-group">
+						<input type="text" name="loginuser" id="loginuser" class="form-control input-lg"
+	                           placeholder="User Name" tabindex="1" ng-model="signup.loginuser"></div>
+						<div class="form-group">
+
+								<input type="password" name="password" id="password" class="form-control input-lg"
+	                                       placeholder="Password" tabindex="2" ng-model="signup.password" >
+	                     </div>
+	                     <p style="color:blue;font-size: 12px">Note : User name can be either email id or phone number.</p> 
+	                    <div class="col-md-6" style="padding-left: 0px;padding-right: 5px;">
+	                    		<button class="btn btn-primary btn-block btn-lg" tabindex="3" ng-click="signin(signup)" style="margin-left: 0px;">SIGN IN</button>
+	                    	</div>
+	                    
+		                    <div class="col-md-6" style="padding-left: 5px;padding-right: 0px;">
+		                    <button class="btn btn-primary btn-block btn-lg" tabindex="4" ng-click="signup()" style="margin-left: 0px;">SIGN UP</button>
+		                    
+		                    </div><br>
+	                    
+	                    <p style="text-align: right;"><a href="#" ng-click="showforgotpassword()">Forgot Pasword?</a></p>
+	                    <hr>
+	                    <div class="form-group" data-ng-show="forgotpasword == '1'">
+	                    	<div class="row alerts-container" data-ng-show="alerts3.length">
+				                <div class="col-xs-12">
+				                  <uib-alert data-ng-repeat="alert in alerts3" type="{{alert.type}}" close="closeAlert3($index)">{{alert.msg}}</uib-alert>
+				                </div>
+				              </div>
+							<input type="email" name="forgotpwduser" id="forgotpwduser" class="form-control input-lg"
+	                           placeholder="Enter registered email id" tabindex="1" ng-model="signup.forgotpwduser" required>
+	                         <div class="col-md-6" style="padding-left: 0px;padding-right: 5px; padding-top: 5px;padding-bottom: 10px;">
+	                    		<button class="btn btn-primary btn-block btn-lg" tabindex="3" ng-click="resetpassword()" style="margin-left: 0px;">RESET</button>
+	                    	</div>
+	                    
+		                    <div class="col-md-6" style="padding-left: 5px;padding-right: 0px; padding-top: 5px;padding-bottom: 10px;">
+		                    <button class="btn btn-primary btn-block btn-lg" tabindex="4" ng-click="closeforgotpassword()" style="margin-left: 0px;">CLOSE</button>
+		                    
+		                    </div>
+		                    <hr>
+	                    </div>
+
+	                   
+
+                    </form>      
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+</div>
+
+<!-- body ends here -->
+<!-- <div class="row">
+	<div class="col-lg-6">
+   		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="Extras">
+   				<button class="btn btn-sm btn-info">Button</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+				<div class="message">
+					This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+	<div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-cog fa-spin" title="Loading Directive">
+				<a href="http://tobiasahlin.com/spinkit/" target="_blank">SpinKit</a>
+			</rd-widget-header>
+			<rd-widget-body>
+				<rd-loading></rd-loading>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div> -->
