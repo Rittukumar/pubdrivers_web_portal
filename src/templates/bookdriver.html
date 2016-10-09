@@ -11,8 +11,6 @@
     </rd-widget>
   </div>  
   <div class="row">
-
-   
       <div ng-controller="BookingCtrl">
               <div class="row alerts-container" data-ng-show="alerts.length">
                 <div class="col-xs-12">
@@ -24,7 +22,7 @@
                      <form>
                          <div class="row">
                              <div class="col-xs-12 col-sm-12 col-md-12" style="color: #767676;background-color: #f6f6f6;padding: 0px 15px;border-bottom: 1px solid #e9e9e9;line-height: 30px;">
-                                 <h5 style="margin-top: 22px; margin-bottom: 20px; color: #767676; font-family: Montserrat;line-height: 30px;"><span class="menu-icon fa fa-car"></span> BOOK A DRIVER </h5><!-- color: #3F799B; -->
+                                 <h5 style="margin-top: 22px; margin-bottom: 20px; color: #767676; font-family: Montserrat;line-height: 30px;"><span class="menu-icon fa fa-car"></span> BOOK A DRIVER </h5>
                              </div>
                             
                              <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,7 +38,8 @@
                              <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                   <div class="col-md-10 col-md-offset-1">
-                                        <select name="transtype" id="transtype" class="form-control" ng-model="transtype" required>
+                                        <select name="transtype" id="transtype" class="form-control" data-ng-model="transtype" required >
+                                           <option value="">-- PLEASE SELECT THE TRANSMISSION TYPE -- </option>
                                            <option value="1">MANUAL GEAR TRANSMISSION</option>
                                            <option value="2">AUTOMATIC GEAR TRANSMISSION</option>
                                        </select>
@@ -51,13 +50,13 @@
                              <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                   <div class="col-md-10 col-md-offset-1">
-                                        <select name="cartype" id="cartype" class="form-control" ng-model="cartype" required>
-                                           <option value="0" selected="selected">-- PLEASE SELECT THE CAR TYPE -- </option>
-                                           <option value="1">HATCHBACK</option>
-                                           <option value="2">SEDAN</option>
-                                           <option value="3">MPV</option>
-                                           <option value="4">SUV</option>
-                                           <option value="5">LUXURY</option>
+                                        <select name="cartype" id="cartype" class="form-control" data-ng-model="cartype" required>
+                                           <option value="">-- PLEASE SELECT THE CAR TYPE -- </option>
+                                           <option value="1">HATCHBACK - car having rear door that swings upwards like alto, eon, kwid, baleno etc.</option>
+                                           <option value="2">SEDAN - car that have long dicky like swift dzire, honda city, hyundai verna, ciaz etc.</option>
+                                           <option value="3">MPV - a large van like car like innova, ertiga, lodgy, tavera, datsun go plus, mobilio etc.</option>
+                                           <option value="4">SUV - a sport utility vehicle like brezza, creta, scorpio, eco sport, bolero, thar, duster etc.</option>
+                                           <option value="5">LUXURY - luxury car like mercedes-benz, porsche, bmw, land rover, audi, jaguar, rolls royce etc. </option>
                                        </select>
                                   </div>
                                   <!-- <p>Selected : <b>{{ cartype }}</b></p> -->
@@ -66,7 +65,7 @@
                              <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                          <input  type="checkbox" value="1" style="width: 16px; height: 16px" id="acceptterms" name="acceptterms" ng-model="acceptterms" required> I accept the terms and conditions of pubdrivers.
+                                          <input  type="checkbox" value="1" style="width: 16px; height: 16px" id="acceptterms" name="acceptterms" ng-model="acceptterms" required> I accept the <a href="#/terms">terms and conditions</a> of pubdrivers.
                                     </div>
                                     <!-- <p>Selected agreement: <b>{{ acceptterms }}</b></p> -->
                                  </div>

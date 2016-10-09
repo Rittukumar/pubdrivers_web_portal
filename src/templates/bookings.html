@@ -36,69 +36,22 @@
                         <td>{{bookings.booking_date_time}}</td>
                         <td>
                             <p> <span >
-                                <label><a href ng-click="getBookingDetails()" class="topic-link">View</a> </label> 
+                                <label><a href ng-click="showDetailBookingStatus(bookings)" class="topic-link">View</a> </label> 
                             </span>
                             </p>
                         </td>
-                        <!-- <td data-title="'Pub Name'" style="text-align: left;">{{bookings.pub.pub_name}} </td>
-                        <td data-title="'Date'">{{bookings.booking_date_time}}</td>
-                        <td data-title="'Status'">{{bookings.status}}</td>
-                        <td data-title="'Message'"><label>
-                              <font color="orange">{{ bookings.status == 'Requested' ? 'mesage 1'}} </font>
-                              <font color="red">{{ bookings.status == 'Assigned' ? 'mesage 2'}}</font>
-                              <font color="green">{{ bookings.status == 'Started' ? 'mesage 3'}} </font>
-                              <font color="green">{{ bookings.status == 'Stoped' ? 'mesage 4'}} </font>
-                              <font color="green">{{ bookings.status == 'Settled' ? 'mesage 5'}} </font>
-                            </label>
-                        </td>
-                        <td data-title="'View Details'">
-                            <p> <span >
-                                <label>| <a href ng-click="getBookingDetails()" class="topic-link">View</a> |</label> 
-                            </span>
-                            </p>
-                        </td> -->
                       </tr>
                 </table>
-
-
-
-
-          <!-- <table class="table">
-          <thead>
-            <tr>
-                <th>Test 1</th><th>Test 2</th><th>Test 3</th>
-            </tr>
-          </thead>
-            <tbody>
-              
-              <tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-              
-            </tbody>
-          </table> -->
         </div>      
-
       </rd-widget-body>
-      <uib-pagination ng-show="getBookingList.length > 0" total-items="paginationTotal"
-                                ng-model="currentUserPage"
-                                max-size="maxSize"
-                                class="pagination-custom pagination-sm pull-right"
-                                boundary-links="true"
-                                rotate="false"
-                                num-pages="numPages"
-                                ng-change="pageChanged()">
-                </uib-pagination>
-     <!--  <rd-widget-footer>
+      <rd-widget-footer>
         <ul class="pagination pagination-sm pull-right">
-          <li><a href="#">&laquo;</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">&raquo;</a></li>
+          <li><a href="#/bookings" ng-click='pageChanged(1)'>&laquo;</a></li>
+          <li ng-repeat="i in getNumber(totalPage) track by $index"><a href="#/bookings" ng-click='pageChanged($index+1)'>{{$index+1}}</a></li>
+          <li><a href="#/bookings" ng-click='pageChanged(totalPage)'>&raquo;</a></li>
         </ul>
         <div class="clearfix"></div>
-      </rd-widget-footer> -->
+      </rd-widget-footer>
     </rd-widget>
   </div>
 </div>

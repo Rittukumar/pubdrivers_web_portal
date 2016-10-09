@@ -46,6 +46,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('changepassword', {
                 url: '/changepassword',
                 templateUrl: 'templates/changepassword.html'
+            })
+            .state('bookingdetails', {
+                url: '/bookingdetails',
+                templateUrl: 'templates/bookingdetails.html'
+            })
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'templates/signup.html'
             });
     }
 ]);

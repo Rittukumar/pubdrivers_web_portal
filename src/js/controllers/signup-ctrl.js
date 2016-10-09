@@ -34,6 +34,11 @@ function SignupCtrl($scope, $cookieStore,$http) {
                         type: 'danger',
                         msg: 'Please enter confirm password.'
                     }];
+            }else if($scope.confirmpassword != $scope.password){
+                    $scope.alerts = [{
+                        type: 'danger',
+                        msg: 'Confirm password is not matching with entered password.'
+                    }];
             }else{
                     //$http.post('http://52.220.4.248/adminportal/public/v1/customer/sendBookingRequest' 
                     $http.post('http://localhost:8000/v1/customer/signup'
@@ -50,12 +55,23 @@ function SignupCtrl($scope, $cookieStore,$http) {
                       })
                     .success(function(data)
                     {
-                        alert("inside success block");
-                        alert(data);
-                        $cookieStore.put('userName', 'TODO');
-                        $cookieStore.put('userId', 'TODO');
-                        $cookieStore.put('userEmail', 'TODO');
-                        $cookieStore.put('userPhone', 'TODO');
+
+                        if(data.code == 200){
+                            $cookieStore.put('userId', data.customer.id);
+                            $cookieStore.put('userName', data.customer.name);
+                            $cookieStore.put('userEmail', data.customer.email);
+                            location.reload();
+                        }else if(data.code == 401){
+                            $scope.alerts = [{
+                                type: 'danger',
+                                msg: 'User exits with given email id and phone number'
+                            }];   
+                        }else{
+                            $scope.alerts = [{
+                                type: 'danger',
+                                msg: 'Error occured while signup.'
+                            }];    
+                        }
                         location.href = "#";
 
                     }).error(function (data) {

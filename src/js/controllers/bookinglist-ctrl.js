@@ -6,21 +6,17 @@ angular.module('RDash')
 function BookingListCtrl($scope, $cookieStore,$http) {
     $scope.getBookingList ={};
     $scope.currentUserPage = 1;
-    $scope.maxSize = 5;
-    $scope.bookingListPagination = {};
+    $scope.userId = $cookieStore.get('userId');
 
     $scope.loadBookingList = function()
         {
             //$http.get('http://52.220.4.248/adminportal/public/v1/customer/allbookingStatus/11').
-            $http.get('http://localhost:8000/v1/customer/allbookingStatus/11?page='+$scope.currentUserPage).
+            $http.get('http://localhost:8000/v1/customer/allbookingStatus/'+$scope.userId+'?page='+$scope.currentUserPage).
             success(function(data)
             {
-                alert("Inside success");
                 $scope.getBookingList = data.data;
-                /*$scope.bookingListPagination = data.meta.pagination;*/
                 $scope.paginationTotal = data.total;
-                alert($scope.paginationTotal);
-
+                $scope.totalPage = data.last_page;
             }).error(function (data) {
                   $scope.alerts = [{
                         type: 'danger',
@@ -29,15 +25,23 @@ function BookingListCtrl($scope, $cookieStore,$http) {
             });
         }
 
-        $scope.pageChanged = function () {
-            alert('Page changed to: ' + $scope.currentUserPage);
+        $scope.pageChanged = function (pageNum) {
+            $scope.currentUserPage=pageNum;
+            //alert('Page changed to: ' + pageNum);
             $scope.loadBookingList();
         };
 
     $scope.loadBookingList();
 
+    $scope.getNumber = function(num) {
+            return new Array(num);   
+    }
 
-
+     $scope.showDetailBookingStatus = function(bookingObj) {
+            $cookieStore.remove('bookingDetailObj');
+            $cookieStore.put('bookingDetailObj',bookingObj);
+            location.href="#/bookingdetails";
+    }
 }
 
 

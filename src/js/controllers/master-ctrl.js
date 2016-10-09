@@ -22,6 +22,7 @@ function MasterCtrl($scope, $cookieStore) {
         $cookieStore.remove('userName');
         $cookieStore.remove('userEmail');
         $cookieStore.remove('userPhone');
+        $cookieStore.remove('bookingDetailObj');
         location.reload(); 
     }
 

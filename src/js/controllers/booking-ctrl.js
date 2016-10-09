@@ -5,13 +5,11 @@ angular.module('RDash')
 
 function BookingCtrl($scope, $cookieStore,$http) {
     $scope.publist = {};
-    $scope.transtype=1;
     $scope.master = {};
     $scope.alerts ={};
     $scope.userId = $cookieStore.get('userId');
     $scope.pubList = function()
         {
-            alert(" == Loading the pub list 1== ");
             $http.get('http://52.220.4.248/adminportal/public/v1/master/getPubs').
             success(function(data)
             {
@@ -23,8 +21,6 @@ function BookingCtrl($scope, $cookieStore,$http) {
                     }];
             });
         }
-    //$cookieStore.get('userId') 
-    //$cookieStore.put('user', credentials.email);
     $scope.pubList();
 
     $scope.bookingRequest = function()
@@ -34,9 +30,14 @@ function BookingCtrl($scope, $cookieStore,$http) {
             if((typeof $scope.selectedOption ==  "undefined") || $scope.selectedOption == null) {
                     $scope.alerts = [{
                         type: 'danger',
-                        msg: 'Please select the pub name.'
+                        msg: 'Please select the pub.'
                     }];
-            }else if($scope.cartype == "0"){
+            }else if((typeof $scope.transtype ==  "undefined") || $scope.transtype == null){
+                    $scope.alerts = [{
+                        type: 'danger',
+                        msg: 'Please select the car transmission type.'
+                    }];
+            }else if((typeof $scope.cartype ==  "undefined") || $scope.cartype == null){
                     $scope.alerts = [{
                         type: 'danger',
                         msg: 'Please select the car type.'
@@ -51,7 +52,7 @@ function BookingCtrl($scope, $cookieStore,$http) {
                     $http.post('http://localhost:8000/v1/customer/sendBookingRequest'
                     ,{
                             data: {
-                                customer_id: "11", //$scope.userId
+                                customer_id: $cookieStore.get('userId'), //$scope.userId
                                 pub_id: $scope.selectedOption.id,
                                 transmission_id: $scope.transtype,
                                 car_type_id: $scope.cartype,
@@ -64,22 +65,25 @@ function BookingCtrl($scope, $cookieStore,$http) {
                       })
                     .success(function(data)
                     {
-                        alert("inside success block");
-                        alert(data);
-                       $scope.alerts = [{
-                            type: 'success',
-                            msg: 'Wow!! You have successully booked the driver. Your booking referece number is [TODO]. We will get back to you with the driver details shortly. Thankyou!'
-                        }];
-                        $scope.selectedOption=null;
-                        $scope.transtype = 1;
-                        $scope.cartype = 0;
-                        $scope.acceptterms = false;
-
+                        if(data.code == 200){
+                            $scope.alerts = [{
+                                type: 'success',
+                                msg: 'Wow!! You have successully booked the driver. Your booking referece number is '+data.data.drive_code+'. We will get back to you with the driver details shortly. Thankyou!'
+                            }];
+                            $scope.selectedOption=null;
+                            $scope.transtype = 1;
+                            $scope.cartype = 0;
+                            $scope.acceptterms = false;
+                        }else{
+                            $scope.alerts = [{
+                                type: 'danger',
+                                msg: 'Opps.. We are not able to process your request right now. Please try again later.'
+                            }];    
+                        }
                     }).error(function (data) {
-                         alert("Inside error block" + data );
                          $scope.alerts = [{
                             type: 'danger',
-                            msg: 'Opps.. We are not able to process your request right now. Please try again later.'
+                            msg: 'Error occured while processing your request. Please try again later or contact administrator.'
                         }];
                     }); 
                 }

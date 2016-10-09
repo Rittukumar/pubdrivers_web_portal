@@ -23,8 +23,6 @@ function HomeCtrl($scope, $cookieStore,$http) {
     }
 
     $scope.signin = function(){
-    alert($scope.signup.loginuser);
-
         if((typeof $scope.signup.loginuser ==  "undefined") || $scope.signup.loginuser == null){
                     $scope.alerts2 = [{
                         type: 'danger',
@@ -49,20 +47,22 @@ function HomeCtrl($scope, $cookieStore,$http) {
                   })
                 .success(function(data)
                 {
-                    alert("Logged In successful!");
-                    //alert(data);
-                    /*if(success login){
-
+                    if(data.code == 200){
+                        $cookieStore.put('userId', data.customer.id);
+                        $cookieStore.put('userName', data.customer.name);
+                        $cookieStore.put('userEmail', data.customer.email);
+                        location.reload();
+                    }else if(data.code == 401){
+                        $scope.alerts2 = [{
+                            type: 'danger',
+                            msg: 'Please enter a valid user name and password.'
+                        }];   
                     }else{
-
+                        $scope.alerts2 = [{
+                            type: 'danger',
+                            msg: 'Error occured while login.'
+                        }];    
                     }
-*/                  $cookieStore.put('userName', 'TODO');
-                    $cookieStore.put('userName', 'TODO');
-                    $cookieStore.put('userEmail', 'TODO');
-                    $cookieStore.put('userPhone', 'TODO');
-                    //location.href = "#";
-                    location.reload();
-
                 }).error(function (data) {
                      alert("Inside error block" + data );
                      $scope.alerts2 = [{
@@ -99,6 +99,8 @@ function HomeCtrl($scope, $cookieStore,$http) {
     }
 
    $scope.showforgotpassword = function(){
+         $scope.signup.forgotpwduser ="";
+         $scope.alerts3 ={};
          $scope.forgotpasword = 1;
     }
 
@@ -107,12 +109,11 @@ function HomeCtrl($scope, $cookieStore,$http) {
     }
 
     $scope.resetpassword = function(){
-        alert($scope.signup.forgotpwduser);
         if((typeof $scope.signup.forgotpwduser ==  "undefined") || $scope.signup.forgotpwduser == null){
-                    $scope.alerts3 = [{
-                        type: 'danger',
-                        msg: 'Please enter the email id.'
-                    }];
+                $scope.alerts3 = [{
+                    type: 'danger',
+                    msg: 'Please enter the email id.'
+                }];
         }else{
                 //$http.post('http://52.220.4.248/adminportal/public/v1/customer/sendBookingRequest' 
                 $http.post('http://localhost:8000/v1/customer/forgotpassword'
@@ -126,18 +127,23 @@ function HomeCtrl($scope, $cookieStore,$http) {
                   })
                 .success(function(data)
                 {
-                    alert("Logged In successful!");
-                    //alert(data);
-                    /*if(success login){
-
+                   if(data.code == 200){
+                       $scope.alerts3 = [{
+                            type: 'success',
+                            msg: 'The password reset link has been sent to your registered email id.'
+                        }];
+                        $scope.signup.forgotpwduser ="";
+                    }else if(data.code == 401){
+                        $scope.alerts3 = [{
+                            type: 'danger',
+                            msg: 'Sorry, the entered email id is not registered with pubdrivers.'
+                        }];   
                     }else{
-
-                    }*/
-                    $scope.alerts3 = [{
-                        type: 'success',
-                        msg: 'The password reset link has been sent to your registered email id.'
-                    }];
-                    $scope.signup.forgotpwduser ="";
+                        $scope.alerts3 = [{
+                            type: 'danger',
+                            msg: 'Error occured while login.'
+                        }];    
+                    }
                 }).error(function (data) {
                      alert("Inside error block" + data );
                      $scope.alerts3 = [{

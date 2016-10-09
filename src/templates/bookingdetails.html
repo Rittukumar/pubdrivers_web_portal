@@ -1,0 +1,144 @@
+<div class="row">
+<div class="col-lg-12">
+    <rd-widget>
+      <rd-widget-body>
+        <div class="widget-icon green pull-left" >
+          <i class="fa fa-list-ol"></i>
+        </div>
+        <div class="title">BOOKING DETAILS</div>
+        <div class="comment">Here you can see the detail break down of your booking.</div>
+      </rd-widget-body>
+    </rd-widget>
+  </div>
+
+<div class="row">
+      <div ng-controller="BookingDetailCtrl">
+           <div class="col-md-10 col-md-offset-1" style="border: 1px solid transparent;box-shadow: 0 1px 1px rgba(0,0,0,.05);border-radius: 2px;border-color: #e9e9e9;background:#FFFFFF;padding-left: 0px;padding-right: 0px;">
+                 <div>
+                        <div class="row">
+                             <div class="col-xs-12 col-sm-12 col-md-12" style="color: #767676;background-color: #f6f6f6;padding: 0px 15px;border-bottom: 1px solid #e9e9e9;line-height: 30px;">
+                                 <h5 style="margin-top: 22px; margin-bottom: 20px; color: #767676; font-family: Montserrat;line-height: 30px;"><span class="menu-icon fa fa-expeditedssl"></span> BOOKING DETAILS </h5><!-- color: #3F799B; -->
+                             </div>
+                              <div class="col-md-12" style="margin-bottom: 0px;">
+                                 <div class="col-md-2">
+                                    <p>Booking Ref No</p>
+                                 </div>
+                                 <div class="col-md-3">
+                                    <p>{{bookingDetailObj.drive_code}}</p>
+                                 </div>
+                                 
+                                 <div class="col-md-1">
+                                    <p>Status</p>
+                                 </div>
+                                 <div class="col-md-2">
+                                    <p>{{bookingDetailObj.status}}</p>
+                                 </div>
+
+                                 <div class="col-md-1 col-md-offset-1">
+                                    <p>Date</p>
+                                 </div>
+                                 <div class="col-md-2">
+                                    <p>{{bookingDetailObj.booking_date_time}}</p>
+                                 </div>
+                              </div>
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status != 'Requested'"  style="margin-bottom: 0px;">
+                                <hr>
+                              </div>
+
+                              <div class="col-md-12"  data-ng-show="bookingDetailObj.status != 'Requested'"  style="margin-bottom: 0px;">
+                                <div class="col-md-12">
+                                  <p style="font-size: 16px;font-weight: 600;color:grey;">Driver Details</p>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12"  data-ng-show="bookingDetailObj.status != 'Requested'" style="margin-bottom: 0px;">
+                                <hr>
+                              </div>
+                              
+                              <!-- Driver Details Start -->
+                              <div class="col-md-12"  data-ng-show="bookingDetailObj.status != 'Requested'"  style="margin-bottom: 0px;">
+                                 <div class="col-md-1" style="margin-right: 10px;">
+                                    <img src="http://52.220.4.248/adminportal/public/images/avatar.jpg" class="img-circle" alt="Cinque Terre" width="80" height="80">
+                                 </div>
+                                 <div class="col-md-10">
+                                    <p>
+                                       <table>
+                                           <tr><td width="80px">Name</td><td>TODO</td></tr>
+                                           <tr><td>Phone No</td><td>TODO</td></tr>
+                                           <tr><td>DL No</td><td>TODO</td></tr> 
+                                        </table> 
+                                    </p>
+                                 </div>
+                              </div>
+                              <!-- Driver Details End -->
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status != 'Requested'" style="margin-bottom: 0px;">
+                                <hr>
+                              </div>  
+
+                              <div class="col-md-12"  style="margin-bottom: 0px;">
+                                 <div class="col-md-2">
+                                    <p>Pickup From</p>
+                                 </div>
+                                 <div class="col-md-10">
+                                    <p>{{bookingDetailObj.pub.pub_name}}<br>{{bookingDetailObj.pub.address}}</p>
+                                 </div>
+                              </div>
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Started' || bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'" style="margin-bottom: 0px;">
+                                <hr>
+                              </div>
+
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Started' || bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'" style="margin-bottom: 0px;">
+                                 <div class="col-md-5">
+                                    <p>Start Time {{bookingDetailObj.drive_start_time}}</p>
+                                    <p>End Time {{bookingDetailObj.drive_end_time}}</p>
+                                 </div>
+                                 
+                                 <div class="col-md-2">
+                                    <p>Total Travel Time</p>
+                                 </div>
+                                 <div class="col-md-2">
+                                    <p>TO DO</p>
+                                 </div>
+                              </div>  
+
+
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'" style="margin-bottom: 0px;">
+                                <hr>
+                              </div>
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'"  style="margin-bottom: 0px;">
+                                <div class="col-md-12">
+                                  <p style="font-size: 16px;font-weight: 600;color:grey;">Billing Details</p>
+                                </div>
+                              </div>
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'" style="margin-bottom: 0px;">
+                                <hr>
+                              </div>
+                              <div class="col-md-12" data-ng-show="bookingDetailObj.status == 'Stopped' || bookingDetailObj.status == 'Settled'" style="margin-bottom: 0px;">
+                                <div class="table-responsive" >
+                                      <table ng-table="billDetail" class="table table-bordred table-striped userlist">
+                                                <thead><th nowrap>Bill Items</th><th nowrap>Quantity</th><th nowrap>Unit Rate</th><th nowrap>Total</th></thead>
+                                                <tr>
+                                                    <td nowrap>TO DO </td>
+                                                    <td nowrap>TO DO </td>
+                                                    <td nowrap>TO DO</td>
+                                                    <td nowrap>TO DO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td nowrap>TO DO</td>
+                                                    <td nowrap>TO DO</td>
+                                                    <td nowrap>TO DO</td>
+                                                    <td nowrap>TO DO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td nowrap colspan="3" style="text-align: right;"><b style="color: grey;font-size: 18px;">Grand Total</b></td>
+                                                    <td nowrap><b style="color: orange;font-size: 20px;"><span class="menu-icon fa fa-rupee"></span> {{bookingDetailObj.total_drive_rate}}</b></td>
+                                                </tr>
+                                            </table>
+                                    </div>      
+                              </div>
+                        </div>
+                  </div>
+             </div>
+         </div>
+  </div>
+</div>
